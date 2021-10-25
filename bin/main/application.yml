@@ -1,0 +1,10 @@
+logging:
+  level:
+    root: INFO
+
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss                                                                                    # 日期格式
+    serialization:
+      indent_output: true                                                                                               # 格式化输出
+      FAIL_ON_EMPTY_BEANS: false                                                                                        # 允許空物件
