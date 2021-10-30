@@ -21,13 +21,29 @@ public class MyControllerAspect {
     public void pointcut() {
     }
 	
-	@Around("pointcut()")
-	public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
+	
+	// method上有標註"@MyAuthRequired"的才會被縫進來
+	@Around("pointcut() && @annotation(myAnno)")																		
+	public Object around1(ProceedingJoinPoint joinPoint, MyAuthRequired myAnno) throws Throwable {
 		
 		// ProceedingJoinPoint 的簡單用法，可參考這文件：
 		// https://blog.csdn.net/qq_36084681/article/details/80447113
 		
+		System.out.println("around1" + "++++++++");
+		System.out.println("myAnny = " + myAnno + " ++++++++");
+		
 		checkAuthRequired(joinPoint);
+		
+		Object obj = joinPoint.proceed();
+		return obj;
+	}
+	
+
+	// 都會被逢進來
+	@Around("pointcut()")
+	public Object around2(ProceedingJoinPoint joinPoint) throws Throwable {
+		
+		System.out.println("around2" + "++++++++");
 		
 		Object obj = joinPoint.proceed();
 		return obj;

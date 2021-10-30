@@ -25,7 +25,6 @@ public class MyAPIController {
 		roleAuthSettings.put("ROLD_USER", Arrays.asList("query"));
 	}
 	
-
 	@GetMapping("/initPage")
 	public String initPage(@RequestParam() String role) {
 		return "Do Init Page, User has role: " + role;
